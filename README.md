@@ -1,24 +1,62 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Users table
 
-Things you may want to cover:
+| Column     | Type   | Options    | 
+| ---------- | ------ | ---------- | 
+| nickname   | string | null:false | 
+| email      | string | null:false | 
+| password   | string | null:false | 
+| first_name | string | null:false | 
+| last_name  | string | null:false | 
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchase_records
 
-* Configuration
+## Items table
 
-* Database creation
+| Column    | Type      | Options          | 
+| --------- | --------- | ---------------- | 
+| image     | string    | null:false       | 
+| item_name | string    | null:false       | 
+| text      | text      | null:false       | 
+| category  | string    | null:false       | 
+| price     | integer   | null:false       | 
+| user_id   | reference | foreign_key:true | 
+| record_id | reference | foreign_key:true | 
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :users
+- has_one :purchase_records
 
-* Services (job queues, cache servers, search engines, etc.)
+## Purchase_records table
 
-* Deployment instructions
+| Column  | Type      | Options          | 
+| ------- | --------- | ---------------- | 
+| who     | integer   | null:false       | 
+| when    | integer   | null:false       | 
+| what    | integer   | null:false       | 
+| item_id | reference | foreign_key:true | 
 
-* ...
+### Association
+
+- belongs_to :items
+- belongs_to :users
+- has_one :addresses
+
+### Addresses table
+
+| Column         | Type    | Options    | 
+| -------------- | ------- | ---------- | 
+| postal_code    | integer | null:false | 
+| prefecture     | integer | null:false | 
+| city           | integer | null:false | 
+| address_number | string  | null:false | 
+| phone_number   | string  | null:false | 
+
+### Association
+
+- belongs_to :purchase_records
