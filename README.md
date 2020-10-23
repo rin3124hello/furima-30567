@@ -22,7 +22,7 @@
 
 | Column          | Type      | Options          | 
 | --------------- | --------- | ---------------- |  
-| item_name       | string     | null:false       | 
+| name            | string     | null:false       | 
 | text            | text       | null:false       | 
 | category_id     | integer    | null:false       | 
 | condition_id    | integer    | null:false       | 
@@ -31,7 +31,6 @@
 | days_id         | integer    | null:false       | 
 | price           | integer    | null:false       | 
 | user            | references | foreign_key:true | 
-| purchase_record | references | foreign_key:true | 
 
 ### Association
 
@@ -53,14 +52,15 @@
 
 ### Addresses table
 
-| Column         | Type      | Options          | 
-| -------------- | --------- | ---------------- | 
-| postal_code    | string    | null:false       | 
-| prefecture_id  | integer   | null:false       | 
-| city           | string    | null:false       | 
-| house_name     | string    |                  |
-| address_number | string    | null:false       | 
-| phone_number   | string    | null:false       | 
+| Column          | Type       | Options          | 
+| --------------- | ---------- | ---------------- | 
+| postal_code     | string     | null:false       | 
+| prefecture_id   | integer    | null:false       | 
+| city            | string     | null:false       | 
+| house_name      | string     |                  |
+| address_number  | string     | null:false       | 
+| phone_number    | string     | null:false       | 
+| purchase_record | references | foregin_key:true |
 
 ### Association
 
