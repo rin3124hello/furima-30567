@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase_records
+- has_one :purchase_record
 
 ## Purchase_records table
 
@@ -46,9 +46,9 @@
 
 ### Association
 
-- belongs_to :items
-- belongs_to :users
-- has_one :addresses
+- belongs_to :item
+- belongs_to :user
+- has_one :address
 
 ### Addresses table
 
