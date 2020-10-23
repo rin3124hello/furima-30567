@@ -42,9 +42,7 @@
 
 | Column  | Type      | Options          | 
 | ------- | --------- | ---------------- | 
-| who     | integer   | null:false       | 
-| when    | integer   | null:false       | 
-| what    | integer   | null:false       | 
+| user_id | reference | foreign_key:true | 
 | item_id | reference | foreign_key:true | 
 
 ### Association
