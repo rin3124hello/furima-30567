@@ -53,14 +53,16 @@
 
 ### Addresses table
 
-| Column         | Type    | Options    | 
-| -------------- | ------- | ---------- | 
-| postal_code    | integer | null:false | 
-| prefecture     | integer | null:false | 
-| city           | integer | null:false | 
-| address_number | string  | null:false | 
-| phone_number   | string  | null:false | 
+| Column         | Type      | Options          | 
+| -------------- | --------- | ---------------- | 
+| postal_code    | string    | null:false       | 
+| prefecture_id  | integer   | null:false       | 
+| city           | integer   | null:false       | 
+| house_name     | string    | null:false       |
+| address_number | string    | null:false       | 
+| phone_number   | string    | null:false       | 
+| record_id      | reference | foreign_key:true |
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :purchase_record
