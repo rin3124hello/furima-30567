@@ -11,7 +11,7 @@
 | last_name          | string  | null:false | 
 | first_name_kana    | string  | null:false | 
 | last_name_kana     | string  | null:false | 
-| birthday           | integer | null:false | 
+| birthday           | date    | null:false | 
 
 ### Association
 
@@ -20,30 +20,30 @@
 
 ## Items table
 
-| Column      | Type      | Options          | 
-| ---------   | --------- | ---------------- |  
-| item_name   | string    | null:false       | 
-| text        | text      | null:false       | 
-| category_id | integer   | null:false       | 
-| condition   | string    | null:false       | 
-| postage     | string    | null:false       | 
-| region      | string    | null:false       | 
-| days        | string    | null:false       | 
-| price       | integer   | null:false       | 
-| user_id     | reference | foreign_key:true | 
-| record_id   | reference | foreign_key:true | 
+| Column          | Type      | Options          | 
+| --------------- | --------- | ---------------- |  
+| item_name       | string     | null:false       | 
+| text            | text       | null:false       | 
+| category_id     | integer    | null:false       | 
+| condition_id    | integer    | null:false       | 
+| postage_id      | integer    | null:false       | 
+| region_id       | integer    | null:false       | 
+| days_id         | integer    | null:false       | 
+| price           | integer    | null:false       | 
+| user            | references | foreign_key:true | 
+| purchase_record | references | foreign_key:true | 
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :purchase_records
 
 ## Purchase_records table
 
-| Column  | Type      | Options          | 
-| ------- | --------- | ---------------- | 
-| user_id | reference | foreign_key:true | 
-| item_id | reference | foreign_key:true | 
+| Column | Type       | Options          | 
+| ------ | ---------- | ---------------- | 
+| user   | references | foreign_key:true | 
+| item   | references | foreign_key:true | 
 
 ### Association
 
@@ -57,11 +57,10 @@
 | -------------- | --------- | ---------------- | 
 | postal_code    | string    | null:false       | 
 | prefecture_id  | integer   | null:false       | 
-| city           | integer   | null:false       | 
-| house_name     | string    | null:false       |
+| city           | string    | null:false       | 
+| house_name     | string    |                  |
 | address_number | string    | null:false       | 
 | phone_number   | string    | null:false       | 
-| record_id      | reference | foreign_key:true |
 
 ### Association
 
