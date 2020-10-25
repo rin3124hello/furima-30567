@@ -20,8 +20,8 @@
 
 ## Items table
 
-| Column          | Type      | Options          | 
-| --------------- | --------- | ---------------- |  
+| Column          | Type       | Options          | 
+| --------------- | ---------- | ---------------- |  
 | name            | string     | null:false       | 
 | text            | text       | null:false       | 
 | category_id     | integer    | null:false       | 
@@ -60,7 +60,7 @@
 | house_name      | string     |                  |
 | address_number  | string     | null:false       | 
 | phone_number    | string     | null:false       | 
-| purchase_record | references | foregin_key:true |
+| purchase_record | references | foreign_key:true |
 
 ### Association
 
