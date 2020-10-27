@@ -77,15 +77,15 @@ describe User do
       end
 
       #ユーザー本名は全角（漢字・ひらがな・カタカナ）での入力が必須であること
-      it "first_name_kanaは全角（カタカナ）でないと登録できない" do
-        @user.first_name_kana = "ai"
+      it "first_nameは全角（カタカナ）でないと登録できない" do
+        @user.first_name = "ai"
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana はカタカナで入力してください")
+        expect(@user.errors.full_messages).to include("First name は全角で入力してください")
       end
-      it "last_name_kanaは全角（カタカナ）でないと登録できない" do
-        @user.last_name_kana = "yamamoto"
+      it "last_nameは全角（カタカナ）でないと登録できない" do
+        @user.last_name = "yamamoto"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana はカタカナで入力してください")
+        expect(@user.errors.full_messages).to include("Last name は全角で入力してください")
       end
 
       #ユーザー本名のフリガナは名字と名前でそれぞれ必須であること"
