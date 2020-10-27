@@ -6,30 +6,9 @@ describe User do
   end
 
   describe 'ユーザー新規登録' do
+
     context '新規登録がうまくいくとき' do
       it "nicknameとemail、passwordとpassword_confirmationが存在すれば登録できる" do
-        expect(@user).to be_valid
-      end
-      it "重複したemailが存在する場合登録できない" do
-        @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = @user.email
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
-      end
-      it "emailが空では登録できない" do
-        @user.email = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
-      end
-      it "passwordが6文字以上であれば登録できる" do
-        @user.password = "000000"
-        @user.password_confirmation = "000000"
-        expect(@user).to be_valid
-      end
-      it "passwordが半角英数字混同であれば登録できる" do
-        @user.password = "hoge8613"
-        @user.password_confirmation = "hoge8613"
         expect(@user).to be_valid
       end
     end
@@ -40,16 +19,14 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
-      it "nicknameが7文字以上であれば登録できない" do
-        @user.nickname = "aaaaaaa"
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname is too long (maximum is 6 characters)")
-      end
-      it "emailが空では登録できない" do
-        @user.email = ""
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Email can't be blank")
-      end
+
+      # it "nicknameが7文字以上であれば登録できない" do
+      #   @user.nickname = "aaaaaaa"
+      #   @user.valid?
+      #   binding.pry
+      #   expect(@user.errors.full_messages).to include("Nickname is too long (maximum is 6 characters)")
+      # end
+
       it "重複したemailが存在する場合登録できない" do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -57,10 +34,26 @@ describe User do
         another_user.valid?
         expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
+      it "emailが空では登録できない" do
+        @user.email = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email can't be blank")
+      end
       it "passwordが空では登録できない" do
         @user.password = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
+      end
+      it "passwordが6文字以上であれば登録できる" do
+        @user.password = "000"
+        # @user.password_confirmation = "000000"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      end
+      it "passwordが半角英数字混同でなければ登録できない" do
+        @user.password = "hogehoge"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password は半角英数字で入力してください")
       end
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         @user.password_confirmation = ""
@@ -70,3 +63,6 @@ describe User do
     end
   end
 end
+
+# エラーが出た時はまずモデルのバリデーションを疑う、というのもテストの目的自体がモデルのバリデーションが合っているかどうかのもの
+# Factoryがあっていても、モデルがNGならエラーが出るし挙動に問題が起きる
