@@ -32,7 +32,7 @@
 | condition_id    | integer    | null:false       | 
 | postage_id      | integer    | null:false       | 
 | region_id       | integer    | null:false       | 
-| days_id         | integer    | null:false       | 
+| day_id          | integer    | null:false       | 
 | price           | integer    | null:false       | 
 | user            | references | foreign_key:true | 
 
