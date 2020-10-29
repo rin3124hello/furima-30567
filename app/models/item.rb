@@ -9,6 +9,6 @@ class Item < ApplicationRecord
   belongs_to_active_hash :region
   belongs_to_active_hash :day
 
-  validates :title, :text, :price, presence: true
-  validates :category_id, condition_id, :postage_id, :region_id, :day_id, numericality: { other_than: 1 }
+  validates :name, :text, :price, presence: true
+  validates :category_id, :condition_id, :postage_id, :region_id, :day_id, numericality: { other_than: 1 }
 end

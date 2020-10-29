@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index]
-  before_action :authenticate_user!, only: [:index, :new]
+  before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
     @items = Item.order("created_at")
@@ -11,18 +11,18 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.create(item_params)
-    if @item.save
-      redirect_to controller: :items, action: :move_to_index
+    @item = Item.new(item_params)
+    if  @item.save
+      redirect_to root_path, action: :move_to_index
     else
-      render "new"
+      render :new
     end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :image, :text, :category_id, :condition_id, postage_id, region_id, days_id).merge(user_id: current_user.id)
+    params.permit(:name, :image, :text, :category_id, :condition_id, :postage_id, :region_id, :day_id, :price).merge(user_id: current_user.id)
   end
 
   def move_to_index
@@ -31,3 +31,12 @@ class ItemsController < ApplicationController
     end
   end
 end
+
+
+# モデル指定（@item Itemのインスタンス）
+# params: { item: {name: "XXX", text: "YYY"} }
+# params.require(:item).permit(:name, :text)
+
+# モデル指定なし
+# params: { name: "XXX", text: "YYY" }
+# params.permit(:name, :text)
