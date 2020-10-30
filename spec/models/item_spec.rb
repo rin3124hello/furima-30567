@@ -29,27 +29,27 @@ describe Item do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it "カテゴリーについての情報がないと保存できない" do
-        @item.category = nil
+        @item.category = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category is not a number")
       end
       it "商品の状態についての情報がないと保存できない" do
-        @item.condition = nil
+        @item.condition = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition is not a number")
       end
       it "送料の負担についての情報がないと保存できない" do
-        @item.postage = nil
+        @item.postage = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Postage is not a number")
       end
       it "発送元の地域についての情報がないと保存できない" do
-        @item.region = nil
+        @item.region = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Region is not a number")
       end
       it "発送までの日数についての情報がないと保存できない" do
-        @item.day = nil
+        @item.day = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Day is not a number")
       end

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index]
-  before_action :authenticate_user!, only: [:index, :new, :create]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @items = Item.order("created_at")
@@ -31,12 +31,3 @@ class ItemsController < ApplicationController
     end
   end
 end
-
-
-# モデル指定（@item Itemのインスタンス）
-# params: { item: {name: "XXX", text: "YYY"} }
-# params.require(:item).permit(:name, :text)
-
-# モデル指定なし
-# params: { name: "XXX", text: "YYY" }
-# params.permit(:name, :text)
