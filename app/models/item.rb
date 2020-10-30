@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :region
   belongs_to_active_hash :day
 
-  validates :name, :text, :price, presence: true
+  validates :name, :text, :price, :image, presence: true
   validates :price, 
     numericality: {
       with: /\A[0-9]+\z/ ,

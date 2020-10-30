@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Item do
   before do
     @item = FactoryBot.build(:item)
+    @item.image = fixture_file_upload('tamuramayu_list.jpg')
   end
 
   describe '商品データの保存' do
@@ -22,7 +23,7 @@ describe Item do
         @item.text = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Text can't be blank")
-      end     
+      end 
       it "価格がないと保存できない" do
         @item.price = ""
         @item.valid?
@@ -72,6 +73,11 @@ describe Item do
         @item.price = "９００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it "商品の画像がないと保存できない" do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
     end
   end
