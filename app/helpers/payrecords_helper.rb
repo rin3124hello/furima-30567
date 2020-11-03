@@ -1,0 +1,2 @@
+module PayrecordsHelper
+end
