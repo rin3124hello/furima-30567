@@ -22,6 +22,16 @@ class PayrecordsController < ApplicationController
   end
 
   def payrecord_params
-    params.require(:purchase_address).permit(:postal_code, :region_id, :city, :house_name, :address_number, :phone_number, :purchase_record).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:purchase_address).permit(:postal_code, :region_id, :city, :house_name, :address_number, :phone_number, :purchase_record, :price).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: payrecord_params[:price],
+      card: payrecord_params[:token],
+      currency: 'jpy'
+    )
+  end
+
 end
