@@ -5,9 +5,7 @@ FactoryBot.define do
     city              {"越谷市"}
     house_name        {"ブロンズルーフ201"}
     address_number    {"蒲生茜町27-1"}
-    phone_number      {"08" + "099999999"}
+    phone_number      {"08012345678"}
     token             {"tok_abcdefghijk00000000000000000"}
-    association :user
-    association :item
   end
 end

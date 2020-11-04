@@ -67,7 +67,7 @@
 | Column          | Type       | Options          | 
 | --------------- | ---------- | ---------------- | 
 | postal_code     | string     | null:false       | 
-| prefecture_id   | integer    | null:false       | 
+| region_id       | integer    | null:false       | 
 | city            | string     | null:false       | 
 | house_name      | string     |                  |
 | address_number  | string     | null:false       | 
