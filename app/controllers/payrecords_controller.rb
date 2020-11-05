@@ -1,15 +1,11 @@
 class PayrecordsController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
+  before_action :sold_out, only: [:index]
 
   def index
-    if user_signed_in? && current_user.id == @item.user_id
-      redirect_to root_path
-    elsif
-      @item.purchase_record.present?
-    else
-      @purchase_address  = PurchaseAddress.new
-    end
+    @purchase_address  = PurchaseAddress.new
   end
 
   def create
@@ -32,6 +28,17 @@ class PayrecordsController < ApplicationController
     
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index
+    if user_signed_in? && current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
+
+  def sold_out
+    @item.purchase_record.present?
+    redirect_to root_path
   end
 
   def pay_item
