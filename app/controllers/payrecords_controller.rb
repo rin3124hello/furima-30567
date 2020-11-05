@@ -1,12 +1,14 @@
 class PayrecordsController < ApplicationController
   before_action :set_item, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :find_user, only: [:index, :create]
 
   def index
-    @purchase_address  = PurchaseAddress.new
     if user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
+    elsif
+      @item.purchase_record.present?
+    else
+      @purchase_address  = PurchaseAddress.new
     end
   end
 
@@ -30,10 +32,6 @@ class PayrecordsController < ApplicationController
     
   def set_item
     @item = Item.find(params[:item_id])
-  end
-
-  def find_user 
-    user_signed_in? && current_user.id != @item.user_id
   end
 
   def pay_item

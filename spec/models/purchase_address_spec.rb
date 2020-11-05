@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe PurchaseAddress do
   before do
     @purchase_address = FactoryBot.build(:purchase_address)
@@ -6,10 +7,11 @@ describe PurchaseAddress do
 
   describe '配送先の情報が保存できる' do
     context "配送先の情報が保存できる場合" do
-      it "郵便番号、都道府県、市区町村、番地、電話番号、tokenがあれば保存される" do
+      it "必須項目があれば保存される" do
         expect(@purchase_address).to be_valid
       end
       it "建物名がなくても購入できる" do
+        @purchase_address.house_name = ""
         expect(@purchase_address).to be_valid
       end
     end
