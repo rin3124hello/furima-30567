@@ -26,13 +26,6 @@ const pay = () => {
       document.getElementById("card-cvc").removeAttribute("name");
       document.getElementById("card-exp-month").removeAttribute("name");
       document.getElementById("card-exp-year").removeAttribute("name");
-    
-      document.getElementById("purchase_address[postal_code]").removeAttribute("name");
-      document.getElementById("purchase_address[region_id]").removeAttribute("name");
-      document.getElementById("purchase_address[city]").removeAttribute("name");
-      document.getElementById("purchase_address[address_number]").removeAttribute("name");
-      document.getElementById("purchase_address[house_name]").removeAttribute("name");
-      document.getElementById("purchase_address[phone_number]").removeAttribute("name");
 
       document.getElementById("charge-form").submit();
     });
